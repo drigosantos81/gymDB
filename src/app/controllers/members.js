@@ -20,10 +20,7 @@ module.exports = {
                 return res.send("Por favor, preencha todos os campos.");
             }
         }
-
-
-
-    return
+        return
 
     },
 
@@ -47,7 +44,6 @@ module.exports = {
                 return res.send("Por favor, preencha todos os campos.");
             }
         }
-
         return
     },
 
