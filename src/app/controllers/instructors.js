@@ -38,18 +38,25 @@ module.exports = {
             }
 
             instructor.age = age(instructor.birth);
-            instructor.birthDay = birthDay(instructor.birthDay).iso;
+            instructor.birthDay = birthDay(instructor.birth).iso;
             instructor.services = instructor.services.split(',');
             instructor.created_at = date(instructor.created_at).format;
-            // birthDay: birthDay(foundMember.birth).iso,            
-
+            
             return res.render('instructors/show', { instructor})
         });
     },
 
     // edit (Exibe formulário com os dados disponivéis para alteração)
     edit(req, res) {
-        return
+        Instructor.find(req.params.id, function(instructor) {
+            if (!instructor) {
+                return res.send("Registro não encontrado!")
+            }
+
+            instructor.birth = date(instructor.birth).iso;
+                        
+            return res.render('instructors/edit', { instructor})
+        });
     },
 
     // update - PUT (Comando de atualização)
@@ -62,7 +69,9 @@ module.exports = {
             }
         }
 
-        return
+        Instructor.update(req.body, function() {
+            return res.redirect(`/instructors/${req.body.id}`)
+        })
     },
 
     // delete - DELETE (Comando de deletar)
