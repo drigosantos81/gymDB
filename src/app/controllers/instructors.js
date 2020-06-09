@@ -1,9 +1,12 @@
-const { age, date, birthDay } = require('../../lib/utils');
+const Instructor = require('../models/Instructor');
 
 module.exports = {
     // index
     index(req, res) {
-        return res.render("instructors/index");
+        
+        Instructor.all(function(instructors) {
+            return res.render("instructors/index", { instructors });
+        });
     },
 
     // Exibe a página create
@@ -21,10 +24,9 @@ module.exports = {
             }
         }
 
-    let { avatar_url, name, birth, gender, services } = req.body;
-
-    return
-
+        Instructor.create(req.body, function(instructor) {
+            return res.redirect(`/instructors/${instructor.id}`);
+        })
     },
 
     // show (Exibe a página com os dados do registro)
