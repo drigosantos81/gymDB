@@ -1,4 +1,5 @@
 const Instructor = require('../models/Instructor');
+const { age, date, birthDay } = require('../../lib/utils');
 
 module.exports = {
     // index
@@ -31,8 +32,19 @@ module.exports = {
 
     // show (Exibe a página com os dados do registro)
     show(req, res) {
-        return
-    
+        Instructor.find(req.params.id, function(instructor) {
+            if (!instructor) {
+                return res.send('Registro não encontrado!')
+            }
+
+            instructor.age = age(instructor.birth);
+            instructor.birthDay = birthDay(instructor.birthDay).iso;
+            instructor.services = instructor.services.split(',');
+            instructor.created_at = date(instructor.created_at).format;
+            // birthDay: birthDay(foundMember.birth).iso,            
+
+            return res.render('instructors/show', { instructor})
+        });
     },
 
     // edit (Exibe formulário com os dados disponivéis para alteração)
