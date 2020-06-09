@@ -33,18 +33,28 @@
         </div>
 
         <div class="item">
-            <div>Ano Escolar</div>
-            <div>{{ member.anoescolar }}</div>        
+            <div>Sexo</div>
+            <div>{{ "Masculino" if member.gender == "M" else "Feminino" }}</div>
         </div>
 
         <div class="item">
-            <div>Carga Horária</div>
-            <div>{{ member.ch }} h</div>        
+            <div>Tipo sanguíneo</div>
+            <div>{{ member.blood }}</div>        
+        </div>
+
+        <div class="item">
+            <div>Peso</div>
+            <div>{{ member.weight }} Kg</div>
+        </div>
+
+        <div class="item">
+            <div>Altuta</div>
+            <div>{{ member.height }} cm</div>
         </div>
 
         <div class="item">
             <div>Desde</div>
-            <div>{{ member.created_at }}</div>        
+            <div>{{ member.created_at }}</div>
         </div>
 
         <a href="/members/{{ member.id }}/edit" class="button">Editar</a>
