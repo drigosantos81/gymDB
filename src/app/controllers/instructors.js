@@ -42,7 +42,7 @@ module.exports = {
             instructor.services = instructor.services.split(',');
             instructor.created_at = date(instructor.created_at).format;
             
-            return res.render('instructors/show', { instructor})
+            return res.render('instructors/show', { instructor });
         });
     },
 

@@ -178,6 +178,10 @@ a.button {
     font-size: 16px;
 }
 
+button[type="submit"]:hover {
+    cursor: pointer;
+}
+
 a.button {
     display: block;
     box-sizing: border-box;
@@ -188,6 +192,10 @@ a.button {
 #form-delete button[type="submit"] {
     margin-top: 8px;
     background-color: lightcoral;
+}
+
+#form-delete button[type="submit"]:hover {
+    cursor: pointer;
 }
 
 /* INDEX */

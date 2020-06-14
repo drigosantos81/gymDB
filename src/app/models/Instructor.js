@@ -3,7 +3,10 @@ const { age, date, birthDay } = require('../../lib/utils');
 
 module.exports = {
     all(callback) {
-        db.query(`SELECT * FROM instructors`, function(err, results) {
+        db.query(`
+            SELECT * FROM instructors
+            ORDER BY name ASC
+            `, function(err, results) {
             if (err) {
                 throw `Database error! ${err}`;
             }
@@ -14,8 +17,8 @@ module.exports = {
     create(data, callback) {
         const query = `
             INSERT INTO instructors (avatar_url, name, birth, gender, services, created_at)
-                VALUES ($1, $2, $3, $4, $5, $6)
-                RETURNING id
+            VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING id
         `;
 
         const values = [
@@ -37,7 +40,9 @@ module.exports = {
     },
 
     find(id, callback) {
-        db.query(`SELECT * FROM instructors WHERE id = $1`, [id], function(err, results) {
+        db.query(`
+            SELECT * FROM instructors 
+            WHERE id = $1`, [id], function(err, results) {
             if (err) {
                 throw `Database error! ${err}`;
             }
@@ -72,7 +77,9 @@ module.exports = {
     },
 
     delete(id, callback) {
-        db.query(`DELETE FROM instructors WHERE id = $1`, [id], function(err, results) {
+        db.query(`
+            DELETE FROM instructors 
+            WHERE id = $1`, [id], function(err, results) {
             if (err) {
                 throw `Database error! ${err}`;
             }
