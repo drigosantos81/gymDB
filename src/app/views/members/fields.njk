@@ -57,7 +57,6 @@
     </div>        
 </div>
 
-
 <div class="item">
     <div>Peso (Kg)</div>
     <div>
@@ -69,6 +68,22 @@
     <div>Altura (cm)</div>
     <div>
         <input type="number" name="height" placeholder="Informe a altura em centímetros..." value="{{ member.height }}">
+    </div>        
+</div>
+
+<div class="item">
+    <div>Instrutor</div>
+    <div>
+        <select name="instructor">
+            {% for instructor in instructorOptions %}
+                <option value="{{instructor.id}}" {% if member.instructor_id == instructor.id %}selected{% endif %}>
+                    {{instructor.name}}
+                </option>
+            {% endfor %}
+
+            {# <option value="A+" {% if member.blood == "A+" %}selected{% end if %}></option> #}
+
+        </select>
     </div>        
 </div>
 

@@ -12,7 +12,9 @@ module.exports = {
 
     // Exibe a página create
     create(req, res) {
-        return res.render("members/create");
+        Member.instructorSelectOptions(function(options) {
+            return res.render("members/create", { instructorOptions: options });
+        });        
     },
 
     // create - POST (Exibe a página para preencher com os dados)
