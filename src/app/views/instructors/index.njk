@@ -19,6 +19,7 @@
     
     <table width="100%">
         <thead>
+
             <tr>
                 <th>Instrutor</th>
                 <th>Acompanhamento</th>
@@ -40,7 +41,13 @@
             </tbody>
         
         </thead>
-    </table>    
+    </table>
+
+    <div class="pagination"
+        data-page={{pagination.page}}
+        data-total={{pagination.total}}
+    ></div>
+
 </div>
 
 {% endblock %}
