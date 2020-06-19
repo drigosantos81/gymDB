@@ -113,11 +113,11 @@ module.exports = {
         let query = '',
             filterQuery = '',
             totalQuery = `(
-                SELECT COUNT(*) * FROM instructors
+                SELECT COUNT(*) FROM instructors
             ) AS total`
 
         if (filter) {
-            query = `${query}
+            filterQuery = `
             WHERE instructors.name ILIKE '%${filter};%'
             OR instructors.services ILIKE '%${filter};%'`
 
