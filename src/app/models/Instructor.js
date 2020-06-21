@@ -118,8 +118,8 @@ module.exports = {
 
         if (filter) {
             filterQuery = `
-            WHERE instructors.name ILIKE '%${filter};%'
-            OR instructors.services ILIKE '%${filter};%'`
+            WHERE instructors.name ILIKE '%${filter}%'
+            OR instructors.services ILIKE '%${filter}%'`
 
             totalQuery = `(
                 SELECT COUNT(*) FROM instructors
@@ -128,7 +128,7 @@ module.exports = {
         }
 
         query = `
-            SELECT instructors.*, ${totalQuery},  COUNT(members) AS total_students FROM instructors
+            SELECT instructors.*, ${totalQuery}, COUNT(members) AS total_students FROM instructors
             LEFT JOIN members ON (instructors.id = members.instructor_id)
             ${filterQuery}
             GROUP BY instructors.id LIMIT $1 OFFSET $2`

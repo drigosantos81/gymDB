@@ -2,11 +2,25 @@
 
 {% block content %}
 
-<div class="card table-container">
-    <a href="/members/create">Novo</a>
+<div class="card table-container">    
+
+    <div class="header">
+        <a class="button" href="/members/create">Novo</a>
+        <form action="/instructors" method="GET">
+            <input 
+                type="text"
+                name="filter"
+                placeholder="Nome ou instutor..."
+                value={{filter}}
+            >
+            <button type="submit">Filtrar</button>
+        </form>
+    </div> 
     
     <table width="100%">
+
         <thead>
+
             <tr>
                 <th>Membro</th>
                 <th>E-mail</th>
@@ -16,21 +30,27 @@
             </tr>
 
             <tbody>
-            {% for member in members %}
-                <tr>
-                    <td>
-                        <span style="background-image: url({{member.avatar_url}})"></span>
-                        {{member.name}}</td>
-                    <td>{{member.email}}</td>
-                    <td>{{member.weight}} kg</td>
-                    <td>{{member.height}} cm</td>
-                    <td><a href="/members/{{member.id}}">Ver</a></td>
-                </tr>
-            {% endfor %}
+                {% for member in members %}
+                    <tr>
+                        <td>
+                            <span style="background-image: url({{member.avatar_url}})"></span>
+                            {{member.name}}</td>
+                        <td>{{member.email}}</td>
+                        <td>{{member.weight}} kg</td>
+                        <td>{{member.height}} cm</td>
+                        <td><a href="/members/{{member.id}}">Ver</a></td>
+                    </tr>
+                {% endfor %}
             </tbody>
         
         </thead>
-    </table>    
+    </table>
+
+    <div class="pagination"
+        data-page={{pagination.page}}
+        data-total={{pagination.total}}
+    ></div>
+        
 </div>
 
 {% endblock %}
