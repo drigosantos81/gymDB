@@ -115,12 +115,12 @@ module.exports = {
         if (filter) {
             filterQuery = `
             WHERE members.name ILIKE '%${filter}%'
-            OR members.professor_id ILIKE '%${filter}%'`
+            OR members.instructor_id ILIKE '%${filter}%'`
         }
-
+        
         query = `
-            SELECT members.*, FROM members
-            LEFT JOIN members ON (instructors.id = members.instructor_id)
+            SELECT * FROM members
+            LEFT JOIN instructors ON (instructors.id = members.instructor_id)
             ${filterQuery}
             LIMIT $1 OFFSET $2`
         

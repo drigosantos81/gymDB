@@ -25,8 +25,7 @@ module.exports = {
             }
         };
 
-        Instructor.paginate(params);
-       
+        Instructor.paginate(params);       
     },
 
     // Exibe a página create

@@ -3,11 +3,33 @@ const { age, date, birthDay } = require('../../lib/utils');
 
 module.exports = {
     // index
-    index(req, res) {
-        
-        Member.all(function(members) {
-            return res.render("members/index", { members });
-        });
+    index(req, res) {        
+        let { filter, page, limit } = req.query;
+
+        page = page || 1;
+        lkimit = limit || 2;
+        let offset = limit * (page - 1);
+
+        const params = {
+            filter,
+            page,
+            limit,
+            offset,
+            callback(members) {
+
+                const pagination = {
+                    total: Math.ceil(members[0].total / limit),
+                    page
+                }
+                return res.render('members/index', { members, pagination, filter });
+            }            
+        }
+
+        Member.paginate(params);
+
+        // Member.all(function(members) {
+        //     return res.render("members/index", { members });
+        // });
     },
 
     // Exibe a página create
